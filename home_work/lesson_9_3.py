@@ -5,7 +5,7 @@ def func(x):
         print("ціле додатнє")
     elif x[0] == "-" and x[1:].isdigit():
         print("ціле від'ємне")
-    elif x[0] == "-" and "." in x and x.count(".") < 2:
+    elif x[0] == "-" and "." in x and x.count(".") < 2 and ("." in x and x.isdigit()):
         print("від'ємне дробове")
     elif "." in x and x.count(".") < 2 and ("." in x and x.isdigit()):
         print("додатнє дробове")
