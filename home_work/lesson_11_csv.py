@@ -25,14 +25,21 @@ import csv, json
 
 with open('my_first.json', 'r') as f:
     f_json = json.load(f)
+#print(f_json)                     # словарь
 
-with open('my_first.csv', 'w') as file:
-     file_writer = csv.writer(file)
-     for el in  f_json:
-         file_writer.writerow(el)
-         print()
+f_list = []
 
-#with open('my_first.csv', 'r') as new:
-    #print(new.read())
+for key, item in f_json.items():
+    f_list.append(key)
+    f_list.append(item[0])
+    f_list.append(item[1])
+
+
+print(f_list)
+
+print("-" * 150)
+
+l = [el for el in f_json.values()]
+print(l)
 
 
