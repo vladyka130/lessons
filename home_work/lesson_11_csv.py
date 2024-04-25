@@ -21,25 +21,30 @@
 # решта 7 цифр може бути будь-якими і формуються випадковим чином.
 # Для виконання цього завдання необхідно розібратися з бібліотекою "random"
 
-import csv, json
+import csv, json, random
 
 with open('my_first.json', 'r') as f:
     f_json = json.load(f)
-#print(f_json)                     # словарь
-
-f_list = []
-
-for key, item in f_json.items():
-    f_list.append(key)
-    f_list.append(item[0])
-    f_list.append(item[1])
-
-
-print(f_list)
-
-print("-" * 150)
 
 l = [el for el in f_json.values()]
-print(l)
+l2 = list(f_json.keys())
+operator = ['095', '096', '097', '098', '099', '063']
 
+l3, count = [], 0
+for i in l:
+    i.insert(0, l2[count])
+    l3.append(i)
+    count += 1
 
+tel = (random.choice(operator) + str(random.randint(1111111, 9999999)))
+
+with open('my_first.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    writer.writerow(['ID', 'Name', 'Age', 'Telephone'])
+    for row in l3:
+        writer.writerow([*row,
+            (random.choice(operator) + str(random.randint(1111111,9999999)))
+             if random.randint(1, 4) != 1 else "no telephone"])
+
+with open('my_first.csv') as f:
+    print(f.read())
