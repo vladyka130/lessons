@@ -48,5 +48,3 @@ with open('my_first.csv', 'w', newline='') as f:
 
 with open('my_first.csv') as f:
     print(f.read())
-
-
