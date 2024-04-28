@@ -60,14 +60,16 @@ class Car(Auto):
         print(f'max speed is {vlv.max_speed}')
 
 
-man = Truck("Man", 'Any', 15, 30)
-sc = Truck('Scania', 'any', 4, 25)
+man, man.color, man.weight = Truck("Man", 'Any', 15, 30), 'White', 8000
+sc, sc.color, sc.weight = Truck('Scania', 'any', 4, 25), 'Blue', 7800
 vlv = Car('VOLVO', 'Any', 12, 240)
-tr = Car('Tavria', 'Any', 22, 110)
+tvr = Car('Tavria', 'Any', 22, 110)
+auto = Auto('Mers', 'Any', 2)
 
-man.move()
-man.load()
-vlv.move()
-tr.move()
+print(man.__dict__)
+print(sc.__dict__)
+print(vlv.__dict__)
+print(tvr.__dict__)
+print(auto.__dict__, auto.color)
 
 
