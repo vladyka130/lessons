@@ -61,12 +61,13 @@ class Car(Auto):
 
 
 man = Truck("Man", 'Any', 15, 30)
+sc = Truck('Scania', 'any', 4, 25)
 vlv = Car('VOLVO', 'Any', 12, 240)
+tr = Car('Tavria', 'Any', 22, 110)
 
-# man.move()
-# man.load()
-
+man.move()
+man.load()
 vlv.move()
-
+tr.move()
 
 
