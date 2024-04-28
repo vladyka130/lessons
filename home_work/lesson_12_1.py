@@ -1,4 +1,3 @@
-
 # Створити батьківський клас auto, який має атрибути:
 # brand, age, cоlor, mark і weight.
 # А також методи: move, birthday і stop.
@@ -6,14 +5,12 @@
 # Атрибути brand, age та mark є обов'язковими під час оголошення об'єкта.
 
 class Auto:
-
-    weight = 1700
-    color = 'red'
-
-    def __init__(self, mark, brand, age):
+    def __init__(self, mark, brand, age, weight='', color=''):
         self.brand = brand
         self.age = age
         self.mark = mark
+        self.weight = weight
+        self.color = color
 
     def move(self):
         print('move')
@@ -26,9 +23,13 @@ class Auto:
 
 bmw = Auto('ANY', "BMW", 10)
 
-print(f'age = {bmw.age} , bmw.birthday() = age + 1 ({bmw.birthday()})')
+
 bmw.move()
 bmw.stop()
-print(bmw.color)
-print(bmw.weight)
+print(f'age = {bmw.age} , bmw.birthday = {bmw.birthday()} (age + 1)')
+
+bmw.color = 'Red'
+bmw.weight = 1700
+
+print(bmw.__dict__)
 
