@@ -25,8 +25,6 @@ class Auto:
         print("stop")
 
 bmw = Auto('ANY', "BMW", 10)
-#bmw.color = 'Red'
-#bmw.width = 1700
 
 print(f'age = {bmw.age} , bmw.birthday() = age + 1 ({bmw.birthday()})')
 bmw.move()
