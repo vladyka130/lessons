@@ -16,13 +16,15 @@ class String(str):
         if str(other) in str(self):
             return str(self).replace(str(other), '', 1)
         else:
-            return self
+            return str(self)
 
 
 s_1 = String(None)
 s_2 = String(['d', 0, '', 9])
-print(s_1 + s_2)
+s_3 = s_1 + s_2
+print(s_3)
 print()
-s_3 = String('my_new_stringm')
-s_4 = String('m')
-print(s_3 - s_4)
+s_4 = String('my_new_stringm')
+s_5 = String('m')
+s_6 = s_4 - s_5
+print(s_6)
