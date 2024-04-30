@@ -9,21 +9,24 @@ class Point(object):
         self.x = x
         self.y = y
 
+    def __str__(self):
+        return f'Point(x={self.x}, y={self.y})'
+
 class Circle(Point):
     def __init__(self, x, y, radius):
         super().__init__(x, y)
         self.radius = radius
 
     def __sub__(self, other):
-        return self.radius - other.radius
-
-    def new(self):
-        self.x += 1
-        self.y += 1
-        return Point(self.x, self.y)
+        if self.radius - other.radius == 0:
+            return Point(self.x - other.x, self.y - other.y)
+        else:
+            return Circle(self.x - other.x, self.y - other.y, abs(self.radius - other.radius))
 
     def __str__(self):
         return f'Circle(x={self.x}, y={self.y}, radius={self.radius})'
 
-c = Point(0, 0)
-c_1 = c.new()
+c_1 = Circle(10, 10, 10)
+c_2 = Circle(10, 8, 12)
+c_3 = c_1 - c_2
+print(c_3)
