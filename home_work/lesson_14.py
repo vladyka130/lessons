@@ -41,20 +41,28 @@ class Car:
         self.model = model
         self.year = year
         self.color = color
-        self.fuel_type = fuel_type
+        self.fuel_type = self.is_valid_fuel_type(self.fuel_type, self.FUEL_TYPES)
 
     @staticmethod
-    def is_valid_fuel_type():
-        ...
+    def is_valid_fuel_type(fuel_type,  FUEL_TYPES):
+        if fuel_type in FUEL_TYPES:
+            return fuel_type
+        else:
+            return FUEL_TYPES[0]
 
 car_1 = Car('Zaz', 1979, 'black', 'дизель')
 car_2 = Car('BMW', 2000, 'red', 'бензин')
 car_3 = Car('VOLVO', 2012, 'black','електрикаcccc')
 car_4 = Car('Mersedes', 2012, 'black','гібрид')
 
-print('COLORS:', Car.get_used_colors())
-print('NUMBER_OF_CARS:', Car.get_number_of_cars())
-
-for item in (car_1, car_2, car_3, car_4):
-    print('item:', item)
-    print('numbers:', item.numbers)
+# print('COLORS:', Car.get_used_colors())
+# print('NUMBER_OF_CARS:', Car.get_number_of_cars())
+#
+# for item in (car_1, car_2, car_3, car_4):
+#     print('item:', item)
+#     print('numbers:', item.numbers)
+###################################################################
+print(car_1.is_valid_fuel_type(car_1.fuel_type, car_1.FUEL_TYPES))
+print(car_2.is_valid_fuel_type(car_2.fuel_type, car_2.FUEL_TYPES))
+print(car_3.is_valid_fuel_type(car_3.fuel_type, car_3.FUEL_TYPES))
+print(car_4.is_valid_fuel_type(car_4.fuel_type, car_4.FUEL_TYPES))
