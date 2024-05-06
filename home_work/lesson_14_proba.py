@@ -1,11 +1,14 @@
 class F():
 
-     def met_1(self, a, b):
-         return  a + b
+    def __init__(self):
+        self.c = 0
 
-     @staticmethod
-     def met_2(a, b):
-         return a + b
+    def met_1(self, a, b):
+        return a + b + self.c
+
+    @staticmethod                                # обризаэ обовязковий self
+    def met_2(a, b):
+        return a + b
 
 a_1 = F()
 print(a_1.met_1(1, 2))
