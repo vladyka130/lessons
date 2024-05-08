@@ -19,11 +19,17 @@ class Calc:
 
     @staticmethod
     def pow(a, b):
-        return a**b
+        if b < 0:
+            raise My_except
+        else:
+            return a**b
 
     @staticmethod
     def sqrt(a):
         return sqrt(a)
+class My_except(Exception):
+    def __init__(self):
+        super().__init__('Pow Error')
 
 a = Calc()
 
@@ -40,7 +46,10 @@ try:
 except ZeroDivisionError:
     print('division by zero!!!')
 
-print(a.pow(4, 4))
+try:
+    print(a.pow(4, -4))
+except My_except:
+    print('second operand is negative')
 
 try:
     print(a.sqrt(-4))
