@@ -39,6 +39,7 @@ class Calc:
             return sqrt(a)
         except ValueError:
             return 'Error!math domain error'
+
 class My_except(Exception):
     def __init__(self):
         super().__init__('Pow Error')
