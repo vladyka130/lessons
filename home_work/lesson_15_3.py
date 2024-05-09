@@ -6,7 +6,8 @@ class Calc:
         try:
             return a + b
         except TypeError:
-            print('unsupported operand. int + str ')
+            return 'Error! unsupported operand. int + str'
+
     @staticmethod
     def sub(a, b):
         return a - b
@@ -20,7 +21,7 @@ class Calc:
         try:
             return a / b
         except ZeroDivisionError:
-            print('division by zero!!!')
+            return 'Error! division by zero!!!'
 
     @staticmethod
     def pow(a, b):
@@ -30,14 +31,14 @@ class Calc:
             else:
                 return a**b
         except My_except:
-            print('second operand is negative')
+            return 'Error! second operand is negative'
 
     @staticmethod
     def sqrt(a):
         try:
             return sqrt(a)
         except ValueError:
-            print('math domain error')
+            return 'Error!math domain error'
 class My_except(Exception):
     def __init__(self):
         super().__init__('Pow Error')
