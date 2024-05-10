@@ -47,8 +47,8 @@ class My_except(Exception):
 a = Calc()
 
 print(a.add(4, 'a'))
-print(a.sub(4, 5))
-print(a.mul(4, 4))
-print(a.div(4, 0))
-print(a.pow(4, -4))
-print(a.sqrt(-4))
+# print(a.sub(4, 5))
+# print(a.mul(4, 4))
+# print(a.div(4, 0))
+# print(a.pow(4, -4))
+# print(a.sqrt(-4))

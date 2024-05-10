@@ -3,10 +3,8 @@ from math import sqrt
 class Calc:
     @staticmethod
     def add(a, b):
-        try:
-            return a + b
-        except TypeError:
-            print('unsupported operand. int + str ')
+        return a + b
+
     @staticmethod
     def sub(a, b):
         return a - b
@@ -17,36 +15,43 @@ class Calc:
 
     @staticmethod
     def div(a, b):
-        try:
-            return a / b
-        except ZeroDivisionError:
-            print('division by zero!!!')
+        return a / b
 
     @staticmethod
     def pow(a, b):
-        try:
-            if b < 0:
-                raise My_except
-            else:
-                return a**b
-        except My_except:
-            print('second operand is negative')
+        if b < 0:
+            raise My_except
+        else:
+            return a**b
 
     @staticmethod
     def sqrt(a):
-        try:
-            return sqrt(a)
-        except ValueError:
-            print('math domain error')
+        return sqrt(a)
 class My_except(Exception):
     def __init__(self):
         super().__init__('Pow Error')
 
 a = Calc()
 
-print(a.add(4, 'a'))
+try:
+    print(a.add(4, 'a'))
+except TypeError:
+    print('unsupported operand. int + str ')
+
 print(a.sub(4, 5))
 print(a.mul(4, 4))
-print(a.div(4, 0))
-print(a.pow(4, -4))
-print(a.sqrt(-4))
+
+try:
+    print(a.div(4, 0))
+except ZeroDivisionError:
+    print('division by zero!!!')
+
+try:
+    print(a.pow(4, -4))
+except My_except:
+    print('second operand is negative')
+
+try:
+    print(a.sqrt(-4))
+except ValueError:
+    print('math domain error')
