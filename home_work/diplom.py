@@ -38,7 +38,8 @@
 # - Програма повинна вміти обчислювати вік людини (кількість повних років)
 #   (Євген Крут Михайлович, 12.10.1980, 11.10.2001, m)
 #
-import calendar, datatime
+import calendar, datetime
+
 class Human:
      def __init__(self, pib, birth, gender, death=None):
          self.pib = pib
@@ -46,15 +47,19 @@ class Human:
          self.gender = gender
          self.death = None
 
-     def age(self):
-         ...
-
      def __str__(self):
          ...
 #-------------------------------------------------------------------------
 
+pib = ''
+gender = ''
+birth = []
+death = []
+age = ''
 
 while True:
+    print()
+    break
     #   menu:    0 - новий користувач
     #                1 - pib
     #                2 - birth  (перевырка по числах (>31, datatime))
@@ -63,6 +68,14 @@ while True:
     #            1 - пошук
     #                1 -  ввести шось
     #            2 - quit or again
-#--------------------------------------------------------------------------------------------
-sorted(list, reverse=True)
-sorted(list, key=lambda x: x[1]) сортування по другому елементу списка (по 2 елементи)
+
+#now = datetime.now()
+# #print("{}.{}.{} ".format(now.day, now.month, now.year))
+# d = datetime.date(1, 3, 5)
+# print(d)
+#
+# current_time = datetime.datetime.now()
+# print(current_time)
+birth = input('Введыть рік, місяць та дату народження: (через пробіл)').split()
+d = datetime.date(birth[0], birth[1], birth[2])
+print(d)
