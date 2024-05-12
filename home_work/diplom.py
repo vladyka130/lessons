@@ -38,44 +38,84 @@
 # - Програма повинна вміти обчислювати вік людини (кількість повних років)
 #   (Євген Крут Михайлович, 12.10.1980, 11.10.2001, m)
 #
-import calendar, datetime
+import datetime
+import string
+
 
 class Human:
-     def __init__(self, pib, birth, gender, death=None):
-         self.pib = pib
-         self.birth = birth
-         self.gender = gender
-         self.death = None
+    def __init__(self, pib, birth, gender, death=None):
+        self.pib = pib
+        self.birth = birth
+        self.gender = gender
+        self.death = None
 
-     def __str__(self):
-         ...
+
 #-------------------------------------------------------------------------
 
+def get_pib():
+    pib = input("Введiть призвiще, iм'я та по-батьковi (не обов'язково) через пробiл: ")
+    for i in pib:
+        if i in string.digits:
+            pib = pib.replace(i, '')
+    pib = pib.title()
+    print(pib)
+    return pib
+
+def get_birth():
+    visokosniy = [2024, 2020, 2016, 2012, 2008, 2004, 2000, 1996, 1992, 1988, 1984, 1981, 1980, 1908, 1912, 1916,
+                  1920, 1924, 1928, 1932, 1936, 1940, 1944, 1948, 1952, 1956, 1960, 1964, 1968, 1972, 1976]
+    while True:
+        birth = input('Введыть дату народження: рiк, мiсяць, день (через пробiл): >>> ').split()
+        if ("".join(birth).isdigit() and 1900 <= int(birth[0]) <= now.year and 1 <= int(birth[1]) <= 12 and 1 <= int(birth[2]) <= 31
+                                          and (int(birth[0]) in visokosniy and 1 <= int(birth[2]) < 30)):
+            date = datetime.datetime(int(birth[0]), int(birth[1]), int(birth[2]))
+            if now > date:
+                break
+        else:
+            print("Ввведіть коректно: ")
+    return date
+
+def get_gender():
+    while True:
+        gender = input("Введiть стать (Ч\Ж)").upper()
+        if gender in 'ЧЖ':
+            return gender
+
+def get_death():
+    death = input("Введiть  ")
+
+def age():
+    ...
+
+# ---------------------- menu -----------------------------
+print('                         ---- Вiдомостi про користувачiв ---- ')
 pib = ''
 gender = ''
 birth = []
 death = []
 age = ''
+now = datetime.datetime.now()
+#birth_str = get_birth().strftime("%Y-%m-%d")
 
 while True:
-    print()
-    break
-    #   menu:    0 - новий користувач
-    #                1 - pib
-    #                2 - birth  (перевырка по числах (>31, datatime))
-    #                3 - death
-    #                4 - gender
-    #            1 - пошук
-    #                1 -  ввести шось
-    #            2 - quit or again
+    enter = input('''Введiть свiй вибiр :
+                        1 - Додати користувача (ПIБ, рiк народження, рiк смертi, стать)
+                        2 - Пошук користувача
+                        3 - Вийти з програми\n >>> ''')
+    if enter == '1':
+        get_pib()
+        get_gender()
+        get_birth()
+        #get_death()
 
-#now = datetime.now()
+    elif enter == '2':
+        ...
+
+    elif enter == '3':
+        print("Бувай )")
+        exit()
+    else:
+        print('Некоректне введення! спробуйте знову!')
+
 # #print("{}.{}.{} ".format(now.day, now.month, now.year))
-# d = datetime.date(1, 3, 5)
-# print(d)
-#
-# current_time = datetime.datetime.now()
-# print(current_time)
-birth = input('Введыть рік, місяць та дату народження: (через пробіл)').split()
-d = datetime.date(birth[0], birth[1], birth[2])
-print(d)
+
