@@ -50,8 +50,6 @@ class Human:
         self.death = None
 
 
-#-------------------------------------------------------------------------
-
 def get_pib():
     pib = input("Введiть призвiще, iм'я та по-батьковi (не обов'язково) через пробiл: ")
     for i in pib:
@@ -60,6 +58,12 @@ def get_pib():
     pib = pib.title()
     print(pib)
     return pib
+
+def get_gender():
+    while True:
+        gender = input("Введiть стать (Ч\Ж)").upper()
+        if gender in 'ЧЖ':
+            return gender
 
 def get_birth():
     visokosniy = [2024, 2020, 2016, 2012, 2008, 2004, 2000, 1996, 1992, 1988, 1984, 1981, 1980, 1908, 1912, 1916,
@@ -75,19 +79,13 @@ def get_birth():
             print("Ввведіть коректно: ")
     return date
 
-def get_gender():
-    while True:
-        gender = input("Введiть стать (Ч\Ж)").upper()
-        if gender in 'ЧЖ':
-            return gender
-
 def get_death():
     death = input("Введiть  ")
 
 def age():
-    ...
+    pass
 
-# ---------------------- menu -----------------------------
+
 print('                         ---- Вiдомостi про користувачiв ---- ')
 pib = ''
 gender = ''
@@ -100,8 +98,9 @@ now = datetime.datetime.now()
 while True:
     enter = input('''Введiть свiй вибiр :
                         1 - Додати користувача (ПIБ, рiк народження, рiк смертi, стать)
-                        2 - Пошук користувача
-                        3 - Вийти з програми\n >>> ''')
+                        2 - Збереження до файлу
+                        3 - Пошук користувача
+                        4 - Вийти з програми\n >>> ''')
     if enter == '1':
         get_pib()
         get_gender()
@@ -112,6 +111,9 @@ while True:
         ...
 
     elif enter == '3':
+        ...
+
+    elif enter == '4':
         print("Бувай )")
         exit()
     else:
