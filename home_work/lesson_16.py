@@ -6,22 +6,20 @@
 # 10  30  90  270  810  2430
 
 ...
-def my(a):
-    while a < 10000:
-        yield a
-        a *= -5
+def my(start, fin, step):
+    while start < fin:
+        yield start * step
+        start *= step
 
-
-for el in my(-2):
+for el in my(-2, 6250, -5):
     print(el)
 
-#----------------------------------------------------------------------------------------------
-print()
-def my_2(i):
-    while i < 10000:
-        yield i
-        i *= 3
+print("*******************************************************8")
 
+def my(start, fin, step):
+    while start < fin:
+        yield start * step
+        start *= step
 
-for el in my_2(10):
+for el in my(10, 2430, 3):
     print(el)

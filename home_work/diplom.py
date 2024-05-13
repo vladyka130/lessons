@@ -67,7 +67,7 @@ def get_birth():
     while True:
         birth = input('Введыть дату народження: рiк, мiсяць, день (через пробiл): >>> ').split()
         if ("".join(birth).isdigit() and 1900 <= int(birth[0]) <= now.year and 1 <= int(birth[1]) <= 12 and 1 <= int(birth[2]) <= 31
-                                          and (int(birth[0]) in visokosniy and 1 <= int(birth[2]) < 30)):
+                               and (int(birth[0]) in visokosniy and 1 <= int(birth[2]) < 30)):
             date = datetime.datetime(int(birth[0]), int(birth[1]), int(birth[2]))
             if now > date:
                 break
