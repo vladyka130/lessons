@@ -43,11 +43,11 @@ import string
 
 
 class Human:
-    def __init__(self, pib, birth, gender, death=None):
+    def __init__(self, pib, birth, gender, death):
         self.pib = pib
         self.birth = birth
         self.gender = gender
-        self.death = None
+        self.death = death
 
 
 def get_pib():
@@ -59,53 +59,76 @@ def get_pib():
     print(pib)
     return pib
 
+pibs = get_pib()
+
 def get_gender():
     while True:
-        gender = input("Введiть стать (Ч\Ж)").upper()
+        gender = input("Введiть стать (Ч\Ж): >>> ").upper()
         if gender in 'ЧЖ':
             return gender
 
+gnd = get_gender()
+
 def get_birth():
-    visokosniy = [2024, 2020, 2016, 2012, 2008, 2004, 2000, 1996, 1992, 1988, 1984, 1981, 1980, 1908, 1912, 1916,
-                  1920, 1924, 1928, 1932, 1936, 1940, 1944, 1948, 1952, 1956, 1960, 1964, 1968, 1972, 1976]
     while True:
         birth = input('Введыть дату народження: рiк, мiсяць, день (через пробiл): >>> ').split()
-        if ("".join(birth).isdigit() and 1900 <= int(birth[0]) <= now.year and 1 <= int(birth[1]) <= 12 and 1 <= int(birth[2]) <= 31
-                               and (int(birth[0]) in visokosniy and 1 <= int(birth[2]) < 30)):
-            date = datetime.datetime(int(birth[0]), int(birth[1]), int(birth[2]))
-            if now > date:
-                break
+        if ("".join(birth).isdigit() and 1900 <= int(birth[0]) <= now.year and 1 <= int(birth[1]) <= 12 and 1 <= int(birth[2]) <= 31):
+            try:
+                date = datetime.datetime(int(birth[0]), int(birth[1]), int(birth[2]))
+                if now > date:
+                    break
+            except ValueError:
+                print("Ввведіть коректно: ")
         else:
             print("Ввведіть коректно: ")
     return date
 
+birth_str = get_birth().strftime("%Y-%m-%d")
+
 def get_death():
-    death = input("Введiть  ")
+    while True:
+        death = input('''Введiть дату смерті (якщо така існує): рiк, мiсяць, день (через пробiл) 
+        якщо ще рано, то натисніть "Q" : >>> ''').upper().split()
+        try:
+            if death == ['Q']:
+                return "---"
+            death_date = datetime.datetime(int(death[0]), int(death[1]), int(death[2]))
+            death_date_2 = now - death_date
+            if death_date_2.days < 0:
+                print(f'Death ERROR! дата смертi через {abs(death_date_2.days)} днiв? Звiдки знаете ? ')
+                continue
+            return death_date
+        except Exception:
+            print('ERROR! Введiть коректно: >>>')
+
+try:
+    dth_str = get_death().strftime("%Y-%m-%d")
+except AttributeError:
+    dth_str = "----"
+#  dth_str - змiнна дати семртi (клас datetime)
 
 def age():
     pass
 
-
 print('                         ---- Вiдомостi про користувачiв ---- ')
-pib = ''
-gender = ''
-birth = []
-death = []
-age = ''
+# pib = pibs
+# gender = gnd
+# birth = birth_str
+# death = dth_str
+# age = ''
+
 now = datetime.datetime.now()
-#birth_str = get_birth().strftime("%Y-%m-%d")
 
 while True:
     enter = input('''Введiть свiй вибiр :
                         1 - Додати користувача (ПIБ, рiк народження, рiк смертi, стать)
-                        2 - Збереження до файлу
-                        3 - Пошук користувача
-                        4 - Вийти з програми\n >>> ''')
+                        2 - Пошук користувача
+                        3 - Вийти з програми\n >>> ''')
     if enter == '1':
         get_pib()
         get_gender()
         get_birth()
-        #get_death()
+        get_death()
 
     elif enter == '2':
         ...
@@ -119,5 +142,4 @@ while True:
     else:
         print('Некоректне введення! спробуйте знову!')
 
-# #print("{}.{}.{} ".format(now.day, now.month, now.year))
-
+# vasya = Human(pibs, birth_str, dth_str)
