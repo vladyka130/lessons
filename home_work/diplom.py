@@ -41,6 +41,7 @@
 import datetime
 import string
 
+now = datetime.datetime.now()
 
 class Human:
     def __init__(self, pib, birth, gender, death):
@@ -51,7 +52,7 @@ class Human:
 
 
 def get_pib():
-    pib = input("Введiть призвiще, iм'я та по-батьковi (не обов'язково) через пробiл: ")
+    pib = input("Введiть призвiще, iм'я та по-батьковi (не обов'язково) через пробiл: \n >>> ")
     for i in pib:
         if i in string.digits:
             pib = pib.replace(i, '')
@@ -59,15 +60,11 @@ def get_pib():
     print(pib)
     return pib
 
-pibs = get_pib()
-
 def get_gender():
     while True:
         gender = input("Введiть стать (Ч\Ж): >>> ").upper()
         if gender in 'ЧЖ':
             return gender
-
-gnd = get_gender()
 
 def get_birth():
     while True:
@@ -82,8 +79,7 @@ def get_birth():
         else:
             print("Ввведіть коректно: ")
     return date
-
-birth_str = get_birth().strftime("%Y-%m-%d")
+#birth_str = get_birth().strftime("%Y-%m-%d")
 
 def get_death():
     while True:
@@ -100,24 +96,17 @@ def get_death():
             return death_date
         except Exception:
             print('ERROR! Введiть коректно: >>>')
-
-try:
-    dth_str = get_death().strftime("%Y-%m-%d")
-except AttributeError:
-    dth_str = "----"
-#  dth_str - змiнна дати семртi (клас datetime)
+def get_dth():
+    try:
+        dth_str = get_death().strftime("%Y-%m-%d")
+    except AttributeError:
+        dth_str = "----"
+    return dth_str
 
 def age():
     pass
 
 print('                         ---- Вiдомостi про користувачiв ---- ')
-# pib = pibs
-# gender = gnd
-# birth = birth_str
-# death = dth_str
-# age = ''
-
-now = datetime.datetime.now()
 
 while True:
     enter = input('''Введiть свiй вибiр :
@@ -125,21 +114,35 @@ while True:
                         2 - Пошук користувача
                         3 - Вийти з програми\n >>> ''')
     if enter == '1':
-        get_pib()
-        get_gender()
-        get_birth()
-        get_death()
+        pib = get_pib()
+        gender = get_gender()
+        birth = get_birth().strftime("%Y-%m-%d")
+        death = get_dth()
+        print("Перевірте введені дані:")
+        print('-' * 50)
+        print(f"Ім'я (ПІБ)      - {pib}")
+        print(f"Cтать           - {gender}")
+        print(f"Дата народження - {birth}")
+        print(f"Дата смерті     - {death}")
+        print("-" * 50)
+        while True:
+            save_or_not = input("Чи зберегти дані до файлу ? вкажіть Т(так) /1 Н(ні) ? >>> ").upper()
+            if save_or_not == 'Н':
+                break
+            elif save_or_not == 'Т':
+                # function save to file
+                break
+            else:
+                print("Не коректно. (Т/Н)? >>>")
 
     elif enter == '2':
         ...
 
     elif enter == '3':
-        ...
-
-    elif enter == '4':
         print("Бувай )")
         exit()
     else:
         print('Некоректне введення! спробуйте знову!')
 
-# vasya = Human(pibs, birth_str, dth_str)
+vasya = Human()
+
