@@ -38,73 +38,10 @@
 # - Програма повинна вміти обчислювати вік людини (кількість повних років)
 #   (Євген Крут Михайлович, 12.10.1980, 11.10.2001, m)
 #
-import datetime
-import string
 
-now = datetime.datetime.now()
-
-class Human:
-    def __init__(self, pib, birth, gender, death):
-        self.pib = pib
-        self.birth = birth
-        self.gender = gender
-        self.death = death
-
-
-def get_pib():
-    pib = input("Введiть призвiще, iм'я та по-батьковi (не обов'язково) через пробiл: \n >>> ")
-    for i in pib:
-        if i in string.digits:
-            pib = pib.replace(i, '')
-    pib = pib.title()
-    print(pib)
-    return pib
-
-def get_gender():
-    while True:
-        gender = input("Введiть стать (Ч\Ж): >>> ").upper()
-        if gender in 'ЧЖ':
-            return gender
-
-def get_birth():
-    while True:
-        birth = input('Введыть дату народження: рiк, мiсяць, день (через пробiл): >>> ').split()
-        if ("".join(birth).isdigit() and 1900 <= int(birth[0]) <= now.year and 1 <= int(birth[1]) <= 12 and 1 <= int(birth[2]) <= 31):
-            try:
-                date = datetime.datetime(int(birth[0]), int(birth[1]), int(birth[2]))
-                if now > date:
-                    break
-            except ValueError:
-                print("Ввведіть коректно: ")
-        else:
-            print("Ввведіть коректно: ")
-    return date
-#birth_str = get_birth().strftime("%Y-%m-%d")
-
-def get_death():
-    while True:
-        death = input('''Введiть дату смерті (якщо така існує): рiк, мiсяць, день (через пробiл) 
-        якщо ще рано, то натисніть "Q" : >>> ''').upper().split()
-        try:
-            if death == ['Q']:
-                return "---"
-            death_date = datetime.datetime(int(death[0]), int(death[1]), int(death[2]))
-            death_date_2 = now - death_date
-            if death_date_2.days < 0:
-                print(f'Death ERROR! дата смертi через {abs(death_date_2.days)} днiв? Звiдки знаете ? ')
-                continue
-            return death_date
-        except Exception:
-            print('ERROR! Введiть коректно: >>>')
-def get_dth():
-    try:
-        dth_str = get_death().strftime("%Y-%m-%d")
-    except AttributeError:
-        dth_str = "----"
-    return dth_str
-
-def age():
-    pass
+from diplom_funcs import *
+from diplom_class import Users
+from temp_2 import *
 
 print('                         ---- Вiдомостi про користувачiв ---- ')
 
@@ -114,23 +51,20 @@ while True:
                         2 - Пошук користувача
                         3 - Вийти з програми\n >>> ''')
     if enter == '1':
-        pib = get_pib()
-        gender = get_gender()
-        birth = get_birth().strftime("%Y-%m-%d")
-        death = get_dth()
-        print("Перевірте введені дані:")
-        print('-' * 50)
-        print(f"Ім'я (ПІБ)      - {pib}")
-        print(f"Cтать           - {gender}")
-        print(f"Дата народження - {birth}")
-        print(f"Дата смерті     - {death}")
-        print("-" * 50)
+
+        user = Users(get_pib(), get_gender(), get_birth().strftime("%Y-%m-%d"), get_dth())
+        print('Внесенi данi: ')
+        print(user.pib_)
+        print(user.gender_)
+        print(user.birth_)
+        print(user.death_)
+
         while True:
-            save_or_not = input("Чи зберегти дані до файлу ? вкажіть Т(так) /1 Н(ні) ? >>> ").upper()
+            save_or_not = input("Чи зберегти дані до файлу ? вкажіть Т(так) / Н(ні) ? >>> ").upper()
             if save_or_not == 'Н':
                 break
             elif save_or_not == 'Т':
-                # function save to file
+                save_to_file(' '.join([user.pib_, user.gender_, user.birth_, user.death_]))
                 break
             else:
                 print("Не коректно. (Т/Н)? >>>")
@@ -144,5 +78,4 @@ while True:
     else:
         print('Некоректне введення! спробуйте знову!')
 
-vasya = Human()
 

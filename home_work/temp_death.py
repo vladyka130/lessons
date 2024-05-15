@@ -18,8 +18,15 @@ def get_death():
         except Exception:
             print('ERROR! Введiть коректно: >>>')
 
-try:
-    dth_str = get_death().strftime("%Y-%m-%d")
-except AttributeError:
-    dth_str = "----"
-#    dth_str - змiнна дати семртi (клас datetime)
+def get_dth(st):
+    try:
+        dth_str = get_death().strftime("%Y-%m-%d")
+    except AttributeError:
+        dth_str = "----"
+    st = int(birth[:3])
+    if dth_str != "----" and st < int(dth_str[0:3]):
+        return dth_str
+    else:
+        print("Дата смертi ранiше народження ?")
+        return "-----"
+
