@@ -41,7 +41,7 @@
 
 from diplom_funcs import *
 from diplom_class import Users
-from temp_2 import *
+#from temp_2 import *
 
 print('                         ---- Вiдомостi про користувачiв ---- ')
 
@@ -58,19 +58,22 @@ while True:
         print(user.gender_)
         print(user.birth_)
         print(user.death_)
-
+        f_string_user = "{:<25} | {:<15} | {:<15} | {:<15}".format(user.pib_, user.gender_, user.birth_, user.death_)
         while True:
             save_or_not = input("Чи зберегти дані до файлу ? вкажіть Т(так) / Н(ні) ? >>> ").upper()
             if save_or_not == 'Н':
                 break
             elif save_or_not == 'Т':
-                save_to_file(' '.join([user.pib_, user.gender_, user.birth_, user.death_]))
+                #save_to_file(' '.join([user.pib_, user.gender_, user.birth_, user.death_]))
+                save_to_file(f_string_user)
                 break
             else:
                 print("Не коректно. (Т/Н)? >>>")
 
     elif enter == '2':
-        ...
+        file_name = input('Вкажіть файл: ? >>> ')
+        el = input('Вкажіть фрагмент: ? >>> ')
+        found(file_name, el)
 
     elif enter == '3':
         print("Бувай )")

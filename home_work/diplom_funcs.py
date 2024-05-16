@@ -1,4 +1,5 @@
 import string, datetime
+from diplom_class import Users
 
 now = datetime.datetime.now()
 
@@ -60,9 +61,37 @@ def get_dth():
 def age():
     pass
 
-def save_to_file(file_name, data):
-    write_or_add = input("Хочете створити новий файл  - вкажiть 1\n якщо редагувати iснуючий - вкажiть 2\n >>>  ")
-    # with open(file_name, 'w', encoding='utf-8') as f:
-    #     f.write(data)
-    #     f.close()
+def save_to_file(data):
+    data_2 = ["ПІБ (ім'я)", "Стать", "Дата народження", "Дата смерті"]
+    while True:
+        write_or_add = input(" Хочете створити новий файл  - натиснiть 1\n якщо редагувати iснуючий    - натиснiть 2\n >>>  ")
+        if write_or_add == "1":
+            mode = 'w'
+            file = input("Вкажiть назву файлу? >>> ")
+            if file[-4:] != '.txt':
+                file = file + '.txt'
+            with open(file=file, mode=mode, encoding='utf-8') as f:
+                #f.write(" | ".join(data_2) + '\n')
+                f.write(f'{data_2[0]:<25} | {data_2[1]:<15} | {data_2[2]:<15} | {data_2[3]:<15}' +'\n')
+                f.write("----------------------------------------------------------------------------" + '\n')
+                f.close()
+            break
+        elif write_or_add == "2":
+            mode = 'a'
+            file = input("Вкажiть файл? >>> ")
+            if file[-4:] != '.txt':
+                file = file + '.txt'
+            break
+        else:
+            print("То який обираэте режим? >>>")
+
+    with open(file=file, mode='a', encoding='utf-8') as f:
+        f.write(data + '\n')
+        f.close()
+
+def found(filename, data):
+    with open(filename, 'r', encoding='utf-8') as f:
+        for el in f:
+            if data in el:
+                print(el, end='')
 
