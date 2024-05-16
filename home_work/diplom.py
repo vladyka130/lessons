@@ -41,7 +41,6 @@
 
 from diplom_funcs import *
 from diplom_class import Users
-#from temp_2 import *
 
 print('                         ---- Вiдомостi про користувачiв ---- ')
 
@@ -64,7 +63,6 @@ while True:
             if save_or_not == 'Н':
                 break
             elif save_or_not == 'Т':
-                #save_to_file(' '.join([user.pib_, user.gender_, user.birth_, user.death_]))
                 save_to_file(f_string_user)
                 break
             else:
