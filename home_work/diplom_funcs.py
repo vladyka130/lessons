@@ -71,7 +71,6 @@ def save_to_file(data):
             if file[-4:] != '.txt':
                 file = file + '.txt'
             with open(file=file, mode=mode, encoding='utf-8') as f:
-                #f.write(" | ".join(data_2) + '\n')
                 f.write(f'{data_2[0]:<25} | {data_2[1]:<15} | {data_2[2]:<15} | {data_2[3]:<15}' +'\n')
                 f.write("----------------------------------------------------------------------------" + '\n')
                 f.close()
