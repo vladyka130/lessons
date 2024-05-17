@@ -41,7 +41,6 @@
 
 from diplom_funcs import *
 from diplom_class import Users
-#from temp_2 import *
 
 print('                         ---- Вiдомостi про користувачiв ---- ')
 
